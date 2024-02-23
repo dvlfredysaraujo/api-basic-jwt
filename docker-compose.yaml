@@ -1,0 +1,11 @@
+version: '2.4'
+
+services:
+  api-basic-jwt:
+    container_name: api-basic-jwt
+    build: .
+
+    ports:
+      - "8081:8081"
+
+

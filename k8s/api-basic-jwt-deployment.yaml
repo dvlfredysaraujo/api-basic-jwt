@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: "kompose convert"
+    kompose.version: "1.31.2 (HEAD)"
+  labels:
+    io.kompose.service: api-basic-jwt
+  name: api-basic-jwt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: api-basic-jwt
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: "kompose convert"
+        kompose.version: "1.31.2 (HEAD)"
+      labels:
+        io.kompose.network/api-basic-jwt-default: "true"
+        io.kompose.service: api-basic-jwt
+    spec:
+      containers:
+        - image: d4rkghost47/api-basic-jwt
+          name: api-basic-jwt
+          ports:
+            - containerPort: 8081
+              hostPort: 8081
+              protocol: TCP
+          resources: {}
+      restartPolicy: Always
+
